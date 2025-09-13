@@ -25,14 +25,12 @@ RegisterNetEvent('rsg-shops:server:openstore', function(products, name, label)
     if products == 'medic' and playerjobtype ~= 'medic' then return end
 
     local itemTable = Config.Products[products]
-    if not exports['rsg-inventory']:DoesShopExist(name) then
-        exports['rsg-inventory']:CreateShop({
-            name = name,
-            label = label,
-            slots = itemTable and #itemTable or 0,
-            items = itemTable,
-        })
-    end
+    exports['rsg-inventory']:CreateShop({
+        name = name,
+        label = label,
+        slots = itemTable and #itemTable or 0,
+        items = itemTable,
+    })
     
     exports['rsg-inventory']:OpenShop(source, name)
 end)
